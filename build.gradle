@@ -1,0 +1,73 @@
+/*
+ * Copyright 2016 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        minSdkVersion = 14
+        targetSdkVersion = 27
+        compileSdkVersion = 27
+        buildToolsVersion = "27.0.2"
+        androidGradlePluginVersion = "3.0.1"
+        androidMavenGradlePluginVersion = "1.5"
+        gradleBintrayPluginVersion = "1.6"
+        kotlinVersion = "1.2.0"
+        supportLibVersion = "27.0.2"
+        espressoVersion = "3.0.0"
+        testRunnerVersion = "1.0.0"
+        junitVersion = "4.12"
+    }
+
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$androidGradlePluginVersion"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$androidMavenGradlePluginVersion"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$gradleBintrayPluginVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+// This allows to disable pre dexing. If not disabled, it makes each CI build slow
+// See https://circleci.com/docs/android/#disable-pre-dexing-to-improve-build-performance
+//     http://tools.android.com/tech-docs/new-build-system/tips#TOC-Improving-Build-Server-performance
+project.ext.preDexLibs = !project.hasProperty('disablePreDex')
+
+subprojects {
+    project.plugins.whenPluginAdded { plugin ->
+        if ("com.android.build.gradle.AppPlugin" == plugin.class.name) {
+            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+        } else if ("com.android.build.gradle.LibraryPlugin" == plugin.class.name) {
+            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/demo-cat-gallery/demo-cat-gallery.iml" filepath="$PROJECT_DIR$/demo-cat-gallery/demo-cat-gallery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo-playground/demo-playground.iml" filepath="$PROJECT_DIR$/demo-playground/demo-playground.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flexbox.iml" filepath="$PROJECT_DIR$/.idea/modules/flexbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flexbox/flexbox-flexbox.iml" filepath="$PROJECT_DIR$/flexbox/flexbox-flexbox.iml" />
+    </modules>
+  </component>
+</project>
