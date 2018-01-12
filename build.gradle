@@ -24,7 +24,7 @@ buildscript {
         buildToolsVersion = "27.0.2"
         androidGradlePluginVersion = "3.0.1"
         androidMavenGradlePluginVersion = "1.5"
-        gradleBintrayPluginVersion = "1.6"
+        gradleBintrayPluginVersion = "1.7.1"
         kotlinVersion = "1.2.0"
         supportLibVersion = "27.0.2"
         espressoVersion = "3.0.0"
@@ -48,7 +48,9 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         jcenter()
+        maven { url "https://jitpack.io" }
         google()
     }
 }
